@@ -15,6 +15,18 @@ This is the third project of the Software Engineering program at TripleTen. It w
 
 Make the buttons functional using Javascript
 
+## Github Pages Link
+
+https://gerard415.github.io/se_project_aroundtheus/
+
 ## Project Video Link
 
 https://drive.google.com/file/d/1KiBqRoCcd1dOK2qwE7GFeK16XJuYDIv_/view?usp=sharing
+
+
+
+
+![image](https://github.com/gerard415/se_project_aroundtheus/assets/82114246/51299c41-6bca-4fbc-80e7-15715a10c37d) 
+
+
+
