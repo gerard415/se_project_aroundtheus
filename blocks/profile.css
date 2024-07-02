@@ -29,7 +29,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  transition: ease all 0.3;
+  transition: ease all 0.3s;
 }
 
 .profile__edit-button {
@@ -43,7 +43,6 @@
 
 .profile__edit-button:hover {
   opacity: 60%;
-  border-radius: 1px;
   cursor: pointer;
 }
 
@@ -63,13 +62,13 @@
   width: 150px;
   height: 50px;
   margin-left: auto;
-  border: 1px white solid;
+  border: 2px white solid;
+  border-radius: 2px;
   transition: ease all 0.3s;
 }
 
 .profile__add-button:hover {
   opacity: 60%;
-  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -89,7 +88,6 @@
 
   .profile__title {
     font-size: 22px;
-    font-weight: 500;
     line-height: 27px;
     text-align: center;
   }
