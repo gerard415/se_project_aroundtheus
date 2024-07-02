@@ -16,3 +16,5 @@ This is the third project of the Software Engineering program at TripleTen. It w
 Make the buttons functional using Javascript
 
 ## Project Video Link
+
+https://drive.google.com/file/d/1KiBqRoCcd1dOK2qwE7GFeK16XJuYDIv_/view?usp=sharing
