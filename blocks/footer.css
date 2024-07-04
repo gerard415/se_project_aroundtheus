@@ -1,6 +1,8 @@
 .footer {
   margin-top: 67px;
   margin-bottom: 60px;
+  padding: 0 19px;
+  box-sizing: border-box;
 }
 
 .footer__description {
