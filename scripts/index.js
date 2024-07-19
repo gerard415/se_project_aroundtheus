@@ -40,19 +40,17 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 const closePopUp = () => {
-  profileEditModal.classList.remove("modal__opened");
+  profileEditModal.classList.remove("modal_opened");
 };
 
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
 
-  profileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
-modalCloseButton.addEventListener("click", () =>
-  profileEditModal.classList.remove("modal__opened")
-);
+modalCloseButton.addEventListener("click", () => closePopUp());
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
