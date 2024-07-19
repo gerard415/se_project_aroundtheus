@@ -69,6 +69,7 @@
   text-align: center;
   color: #fff;
   margin-top: 48px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
