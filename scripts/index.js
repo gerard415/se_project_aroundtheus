@@ -33,6 +33,7 @@ const cardListEl = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
+const addCardForm = addCardModal.querySelector(".modal__form");
 
 //Buttons and other Dom nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -51,13 +52,21 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
+cardTitleInput = document.querySelector("#modal-title-input");
+cardUrlInput = document.querySelector("#modal-url-input");
 
+//Generic Functions
 const closeModal = (modal) => {
   modal.classList.remove("modal_opened");
 };
 
 const openModal = (modal) => {
   modal.classList.add("modal_opened");
+};
+
+const renderCard = (cardData, wrapper) => {
+  const cardElement = getCardElement(cardData);
+  wrapper.prepend(cardElement);
 };
 
 const handleProfileSubmit = (e) => {
@@ -67,6 +76,15 @@ const handleProfileSubmit = (e) => {
   closeModal(profileEditModal);
 };
 
+const handleAddNewCardSubmit = (e) => {
+  e.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  renderCard({ name, link }, cardListEl);
+  closeModal(addCardModal);
+};
+
+//Event Listeners
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -78,7 +96,9 @@ profileModalCloseButton.addEventListener("click", () =>
 profileEditForm.addEventListener("submit", (e) => handleProfileSubmit(e));
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addNewCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
+addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
 
+//Card Functions
 const getCardElement = (cardData) => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -96,8 +116,4 @@ const getCardElement = (cardData) => {
   return cardElement;
 };
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-
-  cardListEl.prepend(cardElement);
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
