@@ -60,8 +60,8 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-cardTitleInput = document.querySelector("#modal-title-input");
-cardUrlInput = document.querySelector("#modal-url-input");
+const cardTitleInput = document.querySelector("#modal-title-input");
+const cardUrlInput = document.querySelector("#modal-url-input");
 
 //Generic Functions
 const closeModal = (modal) => {
@@ -90,6 +90,7 @@ const handleAddNewCardSubmit = (e) => {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
+  e.target.reset();
 };
 
 //Event Listeners
@@ -128,6 +129,7 @@ const getCardElement = (cardData) => {
   cardImageEl.addEventListener("click", () => {
     openModal(previewImageModal);
     previewImage.src = cardImageEl.src;
+    previewImage.alt = cardImageEl.alt;
     previewImageHeading.textContent = cardTitleEl.textContent;
   });
 
