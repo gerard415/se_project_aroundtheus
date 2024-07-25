@@ -34,6 +34,8 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = addCardModal.querySelector(".modal__form");
+const previewImageModal = document.querySelector("#preview-image-modal");
+const previewImage = previewImageModal.querySelector(".modal__preview-image");
 
 //Buttons and other Dom nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -45,6 +47,12 @@ const profileDescription = document.querySelector(".profile__description");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addNewCardCloseButton = document.querySelector(
   "#add-card-modal-close-button"
+);
+const previewImageModalCloseButton = document.querySelector(
+  "#preview-image-modal-close-button"
+);
+const previewImageHeading = document.querySelector(
+  ".modal__preview-image-heading"
 );
 
 //Form Data
@@ -97,6 +105,9 @@ profileEditForm.addEventListener("submit", (e) => handleProfileSubmit(e));
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addNewCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
+previewImageModalCloseButton.addEventListener("click", () =>
+  closeModal(previewImageModal)
+);
 
 //Card Functions
 const getCardElement = (cardData) => {
@@ -104,9 +115,20 @@ const getCardElement = (cardData) => {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    openModal(previewImageModal);
+    previewImage.src = cardImageEl.src;
+    previewImageHeading.textContent = cardTitleEl.textContent;
   });
 
   cardImageEl.src = cardData.link;

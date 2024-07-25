@@ -92,9 +92,22 @@
       </div>
     </div>
 
+    <!--Preview Image Modal-->
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__preview-image-container">
+        <img class="modal__preview-image" src="" alt="" />
+        <button
+          class="modal__close"
+          id="preview-image-modal-close-button"
+        ></button>
+        <p class="modal__preview-image-heading"></p>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
+        <button type="button" class="card__delete-button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button type="button" class="card__like-button"></button>

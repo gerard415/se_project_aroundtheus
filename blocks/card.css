@@ -2,11 +2,16 @@
   display: flex;
   flex-direction: column;
   list-style: none;
+  position: relative;
 }
 
 .card__image {
   width: 282px;
   height: 282px;
+}
+
+.card__image:hover {
+  cursor: pointer;
 }
 
 .card__description {
@@ -27,6 +32,21 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.card__delete-button {
+  background: transparent url("../images/trash-icon.svg") center no-repeat;
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  border: none;
+}
+
+.card__delete-button:hover {
+  opacity: 60%;
+  cursor: pointer;
 }
 
 .card__like-button {
