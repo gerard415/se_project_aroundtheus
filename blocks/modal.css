@@ -48,6 +48,10 @@
   flex-direction: column;
 }
 
+.modal__label {
+  position: relative;
+}
+
 .modal__heading {
   margin: 0;
   font-weight: 900;
@@ -93,6 +97,24 @@
   line-height: 15px;
   margin: 0;
   margin-top: 10px;
+}
+
+.modal__error {
+  border-bottom-color: #ff0000;
+}
+
+.modal__error_visible {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
+}
+
+.modal__button_disabled {
+  opacity: 20%;
 }
 
 @media screen and (max-width: 600px) {
