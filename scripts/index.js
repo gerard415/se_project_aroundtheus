@@ -115,6 +115,15 @@ allModals.forEach((modal) => {
     closeModal(modal);
   });
 });
+document.addEventListener("keyup", (e) => {
+  const currentModal = allModals.find((modal) =>
+    modal.classList.contains("modal_opened")
+  );
+
+  if (e.key === "Escape") {
+    closeModal(currentModal);
+  }
+});
 
 //Card Functions
 const getCardElement = (cardData) => {
