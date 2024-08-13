@@ -36,6 +36,7 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = addCardModal.querySelector(".modal__form");
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__preview-image");
+const allModals = [...document.querySelectorAll(".modal")];
 
 //Buttons and other Dom nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -109,6 +110,11 @@ addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
+allModals.forEach((modal) => {
+  modal.addEventListener("click", () => {
+    closeModal(modal);
+  });
+});
 
 //Card Functions
 const getCardElement = (cardData) => {
