@@ -94,6 +94,10 @@ const handleAddNewCardSubmit = (e) => {
   e.target.reset();
 };
 
+const findCurrentModal = (allModals) => {
+  return allModals.find((modal) => modal.classList.contains("modal_opened"));
+};
+
 //Event Listeners
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -111,18 +115,14 @@ previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
 document.addEventListener("keyup", (e) => {
-  const currentModal = allModals.find((modal) =>
-    modal.classList.contains("modal_opened")
-  );
+  const currentModal = findCurrentModal(allModals);
 
   if (currentModal && e.key === "Escape") {
     closeModal(currentModal);
   }
 });
 document.addEventListener("click", (e) => {
-  const currentModal = allModals.find((modal) =>
-    modal.classList.contains("modal_opened")
-  );
+  const currentModal = findCurrentModal(allModals);
 
   if (currentModal && e.target.className === "modal modal_opened") {
     closeModal(currentModal);
