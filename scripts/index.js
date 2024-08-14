@@ -110,17 +110,21 @@ addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
-allModals.forEach((modal) => {
-  modal.addEventListener("click", () => {
-    closeModal(modal);
-  });
-});
 document.addEventListener("keyup", (e) => {
   const currentModal = allModals.find((modal) =>
     modal.classList.contains("modal_opened")
   );
 
-  if (e.key === "Escape") {
+  if (currentModal && e.key === "Escape") {
+    closeModal(currentModal);
+  }
+});
+document.addEventListener("click", (e) => {
+  const currentModal = allModals.find((modal) =>
+    modal.classList.contains("modal_opened")
+  );
+
+  if (currentModal && e.target.className === "modal modal_opened") {
     closeModal(currentModal);
   }
 });
