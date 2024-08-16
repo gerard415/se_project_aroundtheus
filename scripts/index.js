@@ -65,12 +65,30 @@ const cardTitleInput = document.querySelector("#modal-title-input");
 const cardUrlInput = document.querySelector("#modal-url-input");
 
 //Generic Functions
+const closeModalEscape = (e) => {
+  if (e.key === "Escape") {
+    const currentModal = document.querySelector(".modal_opened");
+    closeModal(currentModal);
+  }
+};
+
+const closeOverlay = (e) => {
+  if (e.target.className === "modal modal_opened") {
+    const currentModal = document.querySelector(".modal_opened");
+    closeModal(currentModal);
+  }
+};
+
 const closeModal = (modal) => {
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeOverlay);
   modal.classList.remove("modal_opened");
 };
 
 const openModal = (modal) => {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  modal.addEventListener("mousedown", closeOverlay);
 };
 
 const renderCard = (cardData, wrapper) => {
@@ -114,20 +132,6 @@ addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
-document.addEventListener("keyup", (e) => {
-  const currentModal = findCurrentModal(allModals);
-
-  if (currentModal && e.key === "Escape") {
-    closeModal(currentModal);
-  }
-});
-document.addEventListener("click", (e) => {
-  const currentModal = findCurrentModal(allModals);
-
-  if (currentModal && e.target.className === "modal modal_opened") {
-    closeModal(currentModal);
-  }
-});
 
 //Card Functions
 const getCardElement = (cardData) => {
