@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,6 +28,26 @@ const initialCards = [
   },
 ];
 
+//Validation
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__error",
+  errorClass: "modal__error_visible",
+};
+
+const profileFormElement = document.forms["edit-profile-form"];
+const addCardFormElement = document.forms["add-card-form"];
+
+const editProfileFormValidator = new FormValidator(config, profileFormElement);
+editProfileFormValidator.enableValidation();
+
+const addCardValidator = new FormValidator(config, addCardFormElement);
+addCardValidator.enableValidation();
+
+//Template
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -64,7 +87,7 @@ const profileDescriptionInput = document.querySelector(
 const cardTitleInput = document.querySelector("#modal-title-input");
 const cardUrlInput = document.querySelector("#modal-url-input");
 
-//Generic Functions
+//Functions
 const closeModalEscape = (e) => {
   if (e.key === "Escape") {
     const currentModal = document.querySelector(".modal_opened");
@@ -91,15 +114,18 @@ const openModal = (modal) => {
   modal.addEventListener("mousedown", closeOverlay);
 };
 
-const renderCard = (cardData, wrapper) => {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+const handleImagePreview = (card) => {
+  previewImage.src = card._link;
+  previewImage.alt = card._name;
+  previewImageHeading.textContent = card._name;
+  openModal(previewImageModal);
 };
 
 const handleProfileSubmit = (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  editProfileFormValidator.disableSubmitButton();
   closeModal(profileEditModal);
 };
 
@@ -110,14 +136,19 @@ const handleAddNewCardSubmit = (e) => {
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
   e.target.reset();
+  addCardValidator.resetValidation();
+  addCardValidator.disableSubmitButton();
 };
 
-const findCurrentModal = (allModals) => {
-  return allModals.find((modal) => modal.classList.contains("modal_opened"));
+const renderCard = (cardData, wrapper) => {
+  const card = new Card(cardData, "#card-template", handleImagePreview);
+  const cardElement = card.getCardElement();
+  wrapper.prepend(cardElement);
 };
 
 //Event Listeners
 profileEditButton.addEventListener("click", () => {
+  editProfileFormValidator.resetValidation();
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
@@ -132,35 +163,5 @@ addCardForm.addEventListener("submit", (e) => handleAddNewCardSubmit(e));
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
-
-//Card Functions
-const getCardElement = (cardData) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImageEl.addEventListener("click", () => {
-    openModal(previewImageModal);
-    previewImage.src = cardImageEl.src;
-    previewImage.alt = cardImageEl.alt;
-    previewImageHeading.textContent = cardTitleEl.textContent;
-  });
-
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
-
-  return cardElement;
-};
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
