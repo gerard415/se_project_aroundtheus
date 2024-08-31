@@ -25,7 +25,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleImagePreview(this);
+        this._handleImagePreview({ name: this._name, link: this._link });
       });
   }
 
