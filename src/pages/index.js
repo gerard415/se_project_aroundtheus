@@ -96,4 +96,5 @@ function handleAddCardFormSubmit({ title, link }) {
   cardListEl.addItem(createCard(cardData));
   addCardPopup.close();
   addCardFormElement.reset();
+  addCardValidator.disableSubmitButton();
 }
