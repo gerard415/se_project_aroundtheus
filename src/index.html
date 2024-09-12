@@ -8,18 +8,21 @@
     <meta name="author" content="Gerard Ike" />
     <title>Around Theus</title>
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
-        <img class="header__image" src="./images/logo.svg" alt="logo" />
+        <img
+          class="header__image"
+          src="<%=require('./images/logo.svg')%>"
+          alt="logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Avatar"
           />
           <div class="profile__info">
@@ -137,7 +140,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>
