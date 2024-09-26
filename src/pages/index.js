@@ -206,7 +206,7 @@ profileEditButton.addEventListener("click", () => {
 // edit user avatar functionality
 const editAvatarModal = new PopupWithForm(
   "#edit-avatar-modal",
-  handleEditModalFormSubmit
+  handleAvatarEditFormSubmit
 );
 editAvatarModal.setEventListeners();
 
@@ -215,8 +215,9 @@ editAvatarButton.addEventListener("click", () => {
   editAvatarModal.open();
 });
 
-function handleEditModalFormSubmit(formData) {
+function handleAvatarEditFormSubmit(formData) {
   const avatarUrl = formData.avatar;
+  avatarEditFormElement.reset();
   editAvatarModal.close();
   api
     .editUserAvatar(avatarUrl)
