@@ -121,7 +121,7 @@ function handleAddCardFormSubmit(data) {
       section.addItem(card);
     })
     .finally(() => {
-      addCardPopup.renderLoading(false);
+      addCardPopup.setLoading(false);
     });
 }
 
@@ -190,7 +190,7 @@ function handleProfileEditSubmit(data) {
     })
     .catch((err) => console.error(`Failed to update users info: ${err}`))
     .finally(() => {
-      editProfilePopup.renderLoading(false);
+      editProfilePopup.setLoading(false);
     });
 
   editProfilePopup.close();
@@ -224,6 +224,6 @@ function handleEditModalFormSubmit(formData) {
       userInfo.setUserAvatar(userData.avatar);
     })
     .finally(() => {
-      editAvatarModal.renderLoading(false);
+      editAvatarModal.setLoading(false);
     });
 }
