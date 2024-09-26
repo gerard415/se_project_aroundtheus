@@ -117,6 +117,21 @@
   opacity: 20%;
 }
 
+/* Confirmation */
+#confirmation-modal {
+  width: 430px;
+  height: 181px;
+}
+
+#confirmation-modal-button {
+  width: 385px;
+  margin-left: 20px;
+}
+
+#modal-heading-confirm {
+  position: center;
+}
+
 @media screen and (max-width: 600px) {
   .modal__container {
     padding: 25px 22px 22px;
