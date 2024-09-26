@@ -69,6 +69,10 @@
   margin-top: 30px;
 }
 
+.modal__input_type_url {
+  margin-top: 45px;
+}
+
 .modal__button {
   height: 50px;
   border-radius: 2px;
@@ -118,14 +122,22 @@
 }
 
 /* Confirmation */
-#confirmation-modal {
-  width: 430px;
-  height: 181px;
+
+.modal__save {
+  height: 50px;
+  border-radius: 2px;
+  background-color: #000;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
+  margin-top: 38px;
+  cursor: pointer;
 }
 
 #confirmation-modal-button {
-  width: 385px;
-  margin-left: 20px;
+  width: 358px;
+  height: 50px;
 }
 
 #modal-heading-confirm {

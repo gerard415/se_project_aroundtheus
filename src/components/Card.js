@@ -8,8 +8,8 @@ export default class Card {
   ) {
     this._name = cardData.name;
     this._link = cardData.link;
-    this._id = cardData._id;
-    this._isLiked = cardData.isLiked;
+    this.id = cardData._id;
+    this.isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleImagePreview = handleImagePreview;
     this.handleDeleteCard = handleDeleteCard;
@@ -28,7 +28,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this.handleDeleteCard(this._id, this._cardElement);
+        this.handleDeleteCard(this.id, this._cardElement);
       });
 
     //image preview button
@@ -47,9 +47,9 @@ export default class Card {
 
   handleLikeButton(isLiked) {
     if (isLiked !== undefined) {
-      this._isLiked = isLiked;
+      this.isLiked = isLiked;
     }
-    if (this._isLiked) {
+    if (this.isLiked) {
       this.toggleLike();
     }
   }
@@ -67,7 +67,7 @@ export default class Card {
     cardImage.alt = this._name;
     cardTitle.textContent = this._name;
 
-    this.handleLikeButton(this._isLiked);
+    this.handleLikeButton(this.isLiked);
 
     this._setEventListeners();
 

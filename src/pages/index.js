@@ -8,7 +8,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
 import {
-  initialCards,
   config,
   profileFormElement,
   addCardFormElement,
@@ -63,22 +62,22 @@ api
 
 //like and dislike a card
 function handleLikeClick(card) {
-  if (card._isLiked) {
+  if (card.isLiked) {
     api
-      .dislikeCard(card._id)
+      .dislikeCard(card.id)
       .then(() => {
         card.toggleLike();
-        card._isLiked = false;
+        card.isLiked = false;
       })
       .catch((err) => {
         console.error(`Error on Card Dislike ${err}`);
       });
   } else {
     api
-      .likeCard(card._id)
+      .likeCard(card.id)
       .then(() => {
         card.toggleLike();
-        card._isLiked = true;
+        card.isLiked = true;
       })
       .catch((err) => {
         console.error(`Error on Card Like ${err}`);
@@ -111,14 +110,15 @@ addNewCardButton.addEventListener("click", () => {
 function handleAddCardFormSubmit(data) {
   const name = data.title.trim();
   const link = data.link.trim();
-  addCardPopup.close();
-  addCardFormElement.reset();
-  addCardValidator.disableSubmitButton();
+
   api
     .createCard({ name, link })
     .then((res) => {
       const card = createCard(res);
       section.addItem(card);
+      addCardPopup.close();
+      addCardFormElement.reset();
+      addCardValidator.disableSubmitButton();
     })
     .finally(() => {
       addCardPopup.setLoading(false);
@@ -136,7 +136,6 @@ function handleImagePreview(card) {
 //delete card functionality
 function handleDeleteCard(cardId, cardElement) {
   deleteModalConfirmation.open(cardId, cardElement);
-  console.log(cardId, cardElement);
 }
 
 const deleteModalConfirmation = new PopupConfirmation(
@@ -187,13 +186,12 @@ function handleProfileEditSubmit(data) {
         description: userData.about,
         avatar: userData.avatar,
       });
+      editProfilePopup.close();
     })
     .catch((err) => console.error(`Failed to update users info: ${err}`))
     .finally(() => {
       editProfilePopup.setLoading(false);
     });
-
-  editProfilePopup.close();
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -217,12 +215,13 @@ editAvatarButton.addEventListener("click", () => {
 
 function handleAvatarEditFormSubmit(formData) {
   const avatarUrl = formData.avatar;
-  avatarEditFormElement.reset();
-  editAvatarModal.close();
+
   api
     .editUserAvatar(avatarUrl)
     .then((userData) => {
       userInfo.setUserAvatar(userData.avatar);
+      avatarEditFormElement.reset();
+      editAvatarModal.close();
     })
     .finally(() => {
       editAvatarModal.setLoading(false);
