@@ -38,10 +38,12 @@ export const config = {
 
 export const profileFormElement = document.forms["edit-profile-form"];
 export const addCardFormElement = document.forms["add-card-form"];
+export const avatarEditFormElement = document.forms["edit-avatar-form"];
 
 //Buttons and other Dom nodes
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const addNewCardButton = document.querySelector(".profile__add-button");
+export const editAvatarButton = document.querySelector(".avatar__edit-icon");
 
 //Form Data
 export const profileTitleInput = document.querySelector("#profile-title-input");
