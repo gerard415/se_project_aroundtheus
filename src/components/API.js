@@ -18,7 +18,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "GET",
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   //Adding a new card
@@ -27,7 +29,9 @@ export default class Api {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify(card),
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   // Deleting a card
@@ -35,7 +39,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   // Liking and disliking cards
@@ -43,14 +49,18 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "PUT",
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   // USER INFO FUNCTIONS
@@ -60,7 +70,9 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "GET",
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   // Editing user info
@@ -69,7 +81,9 @@ export default class Api {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify(userData),
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 
   // Editing user avatar
@@ -78,6 +92,8 @@ export default class Api {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({ avatar: avatarUrl }),
-    }).then(this._getResponse);
+    })
+      .then(this._getResponse)
+      .catch((err) => console.error(err));
   }
 }

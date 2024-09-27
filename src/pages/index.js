@@ -120,6 +120,7 @@ function handleAddCardFormSubmit(data) {
       addCardFormElement.reset();
       addCardValidator.disableSubmitButton();
     })
+    .catch((err) => console.error(err))
     .finally(() => {
       addCardPopup.setLoading(false);
     });
@@ -199,6 +200,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = currentUserInfo.name;
   profileDescriptionInput.value = currentUserInfo.description;
   editProfilePopup.open();
+  editProfileFormValidator.resetValidation();
 });
 
 // edit user avatar functionality
@@ -209,7 +211,6 @@ const editAvatarModal = new PopupWithForm(
 editAvatarModal.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => {
-  avatarFormValidator.resetValidation();
   editAvatarModal.open();
 });
 
@@ -222,7 +223,9 @@ function handleAvatarEditFormSubmit(formData) {
       userInfo.setUserAvatar(userData.avatar);
       avatarEditFormElement.reset();
       editAvatarModal.close();
+      avatarFormValidator.disableSubmitButton();
     })
+    .catch((err) => console.error(err))
     .finally(() => {
       editAvatarModal.setLoading(false);
     });
